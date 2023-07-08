@@ -83,6 +83,9 @@ public class Task extends TaskItem{
         WeekFields weekFields = WeekFields.of(Locale.ENGLISH);
         return targetDate.get(weekFields.weekOfWeekBasedYear()) == today.get(weekFields.weekOfWeekBasedYear());
     }
+    public boolean isDueToday() {
+        return targetDate.equals(LocalDate.now());
+    }
     public boolean isDueThisMonth() {
         LocalDate today = LocalDate.now();
         return targetDate.getYear() == today.getYear() && targetDate.getMonth() == today.getMonth();
