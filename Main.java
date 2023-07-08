@@ -12,7 +12,7 @@ public class Main {
         String fileName = "save.json";
         testList = JsonFileManager.fromJson(fileName, TaskList.class);
 
-        Task test = new Task(2, "test2", LocalTime.now(), LocalDate.now());
+        Task test = new Task(3, "test3", LocalTime.now(), LocalDate.now());
         testList.addTask(test);
 
         for (Object x : testList.getTasks()) {
