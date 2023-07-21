@@ -1,0 +1,116 @@
+{
+  "tasks": [
+    {
+      "targetTime": {
+        "hour": 18,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "targetDate": {
+        "year": 2023,
+        "month": 7,
+        "day": 19
+      },
+      "targetDay": "WEDNESDAY",
+      "assignee": "Дом",
+      "subTasks": [
+        {
+          "order": 0,
+          "name": "",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        }
+      ],
+      "name": "\u003chtml\u003e\u003cs\u003eУбраться дома\u003c/s\u003e\u003c/html\u003e",
+      "id": 1,
+      "completed": true,
+      "selected": true
+    },
+    {
+      "targetTime": {
+        "hour": 14,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "targetDate": {
+        "year": 2023,
+        "month": 7,
+        "day": 20
+      },
+      "targetDay": "THURSDAY",
+      "assignee": "Дом",
+      "subTasks": [
+        {
+          "order": 0,
+          "name": "",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        }
+      ],
+      "name": "Вытереть пыль",
+      "id": 1,
+      "completed": false,
+      "selected": true
+    },
+    {
+      "targetTime": {
+        "hour": 15,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "targetDate": {
+        "year": 2023,
+        "month": 7,
+        "day": 20
+      },
+      "targetDay": "THURSDAY",
+      "assignee": "Учеба",
+      "subTasks": [
+        {
+          "order": 0,
+          "name": "Открыть ворд...",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        }
+      ],
+      "name": "Написать отчет по практике",
+      "id": 1,
+      "completed": false,
+      "selected": true
+    },
+    {
+      "targetTime": {
+        "hour": 18,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "targetDate": {
+        "year": 2023,
+        "month": 7,
+        "day": 19
+      },
+      "targetDay": "WEDNESDAY",
+      "assignee": "Дом",
+      "subTasks": [
+        {
+          "order": 0,
+          "name": "",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        }
+      ],
+      "name": "Помыть полы",
+      "id": 1,
+      "completed": false,
+      "selected": true
+    }
+  ]
+}
