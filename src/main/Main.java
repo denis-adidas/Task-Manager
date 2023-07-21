@@ -1,17 +1,16 @@
 package main;
 
-import com.denis_adidas.calendar.Calendar;
-import com.denis_adidas.component.ToDoForm.ToDo;
-import component.view.ScrollBarCustom;
-import data.JsonFileManager;
+import view.component.CalendarForm.Calendar;
+import view.component.ToDoForm.ToDo;
+import view.component.menu.ScrollBarCustom;
+import view.component.menu.StringListTransferHandler;
 import data.TaskListManager;
 import java.awt.CardLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.*;
-
+import javax.swing.DefaultListModel;
 import model.Model_Menu;
 
 
@@ -31,87 +30,84 @@ public class Main extends javax.swing.JFrame {
         };
 
         addWindowListener(windowAdapter);
-
-        String iconPath = "icon.png";
-        ImageIcon icon = new ImageIcon(iconPath);
-        setIconImage(icon.getImage());
-        setTitle("Today I'm going to write rap😎😎");
     }
     
      private void init() {
-        JsonFileManager.getInstance().importTasks("autosave.json");
+        TaskListManager.getInstance().importTasks("autosave.json");
         updateMenu();
         scrollMenu.getViewport().setOpaque(false);
         setMainTime();
     }
-
-    public void updateMenu() {
+     
+     public void updateMenu() {
         cl = (CardLayout) MainPanel.getLayout();
-
+        
+        DefaultListModel<Model_Menu> menuListModel = new DefaultListModel<>();
+    
         menuList.addItem(new Model_Menu("Calendar"));
         menuList.addItem(new Model_Menu("Todo"));
         menuList.addItem(new Model_Menu("Completed"));
-
-
+    
         updateAssigneeList();
-
-        MainPanel.add(new Calendar(), "Calendar");
-        MainPanel.add(new ToDo(), "Todo");
-
+ 
+    MainPanel.add(new Calendar(), "Calendar");
+    MainPanel.add(new ToDo(), "Todo");
+       
         menuList.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                Object selectedValue = menuList.getSelectedValue();
-                if (selectedValue instanceof Model_Menu) {
-                    Model_Menu menu = (Model_Menu) selectedValue;
-                    String panelName = menu.getMenuName();
-                    if ("Todo".equals(panelName)) {
-                        ToDo todo = (ToDo)MainPanel.getComponent(1);
-                        todo.updateTasksPanel();
-                        cl.show(MainPanel, "Todo");
-                        checkList();
-                        updateAssigneeList();
-                    }
-                    if ("Calendar".equals(panelName)) {
-                        Calendar calendar = (Calendar) MainPanel.getComponent(0);
-                        calendar.updateTasks();
-                        calendar.repaint();
-                        cl.show(MainPanel, "Calendar");
-                        checkList();
-                        updateAssigneeList();
-                    }
-                    if ("Completed".equals(panelName)) {
-                        ToDo todo = (ToDo)MainPanel.getComponent(1);
-                        todo.updateTasksPanel(TaskListManager.getInstance().getCompletedTask());
-                        cl.show(MainPanel, "Todo");
-                        checkList();
-                        updateAssigneeList();
-                    }
-                    if (menuList.contains(panelName) && !"Calendar".equals(panelName) && !"Todo".equals(panelName) && !"Completed".equals(panelName)) {
-                        ToDo todo = (ToDo)MainPanel.getComponent(1);
-                        todo.updateTasksPanel(TaskListManager.getInstance().getAssigneeList(panelName));
-                        cl.show(MainPanel, "Todo");
-                        checkList();
-                        updateAssigneeList();
-                    }
-                }
-
-
+    if (!e.getValueIsAdjusting()) {
+        Object selectedValue = menuList.getSelectedValue();
+        if (selectedValue instanceof Model_Menu) {
+            Model_Menu menu = (Model_Menu) selectedValue;
+            String panelName = menu.getMenuName();
+            if ("Todo".equals(panelName)) {
+                ToDo todo = (ToDo)MainPanel.getComponent(1);
+                todo.updateTasksPanel();
+                cl.show(MainPanel, "Todo");
+                checkList();
+                updateAssigneeList();
             }
-        });
+            if ("Calendar".equals(panelName)) {
+                Calendar calendar = (Calendar) MainPanel.getComponent(0); 
+                calendar.updateTasks();
+                calendar.repaint();
+                cl.show(MainPanel, "Calendar");  
+                checkList();
+                updateAssigneeList();
+            }
+            if ("Completed".equals(panelName)) {
+                ToDo todo = (ToDo)MainPanel.getComponent(1);
+                todo.updateTasksPanel(TaskListManager.getInstance().getCompletedTask());
+                cl.show(MainPanel, "Todo");
+                checkList();
+                updateAssigneeList();
+            }
+            if (menuList.contains(panelName) && !"Calendar".equals(panelName) && !"Todo".equals(panelName) && !"Completed".equals(panelName)) {
+                ToDo todo = (ToDo)MainPanel.getComponent(1);
+                todo.updateTasksPanel(TaskListManager.getInstance().getAssigneeList(panelName));
+                cl.show(MainPanel, "Todo");
+                checkList();
+                updateAssigneeList();
+            }
+        }
+       
+        
     }
-    private void updateAssigneeList() {
-        for (String x : TaskListManager.getInstance().getAssigneeList(true)) {
-            if (x != null && !x.equals("") && !menuList.contains(x))
+});
+     }
+     private void updateAssigneeList() {
+         for (String x : TaskListManager.getInstance().getAssigneeList(true)) {
+            if (x != null && !menuList.contains(x))
                 menuList.addItem(new Model_Menu(x));
         }
-    }
-    private void checkList() {
-        for (int i = 3; i < menuList.getModel().getSize(); i++) {
-            if (!TaskListManager.getInstance().getAssigneeList(true).contains(menuList.getElementAt(i).toString()) ){
-                menuList.deleteItem(i);
-            }
-        }
-    }
+     }
+
+     private void checkList() {
+         for (int i = 3; i < menuList.getModel().getSize(); i++) {
+             if (!TaskListManager.getInstance().getAssigneeList(true).contains(menuList.getModel().getElementAt(i)) ){
+                 menuList.deleteItem(i);
+             }
+         }
+     }
      private void setMainTime() {
          new Thread(new Runnable() {
             @Override
@@ -138,9 +134,9 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         panel1 = new model.Panel();
-        menu1 = new component.view.Menu();
+        menu1 = new view.component.menu.Menu();
         scrollMenu = new javax.swing.JScrollPane();
-        menuList = new component.view.ListMenu<>();
+        menuList = new view.component.menu.ListMenu<>();
         MainPanel = new javax.swing.JPanel();
         lbTime = new javax.swing.JLabel();
         lbDate = new javax.swing.JLabel();
@@ -277,8 +273,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel lbDate;
     private javax.swing.JLabel lbTime;
     private javax.swing.JLabel lbType;
-    private component.view.Menu menu1;
-    private component.view.ListMenu<String> menuList;
+    private view.component.menu.Menu menu1;
+    private view.component.menu.ListMenu<String> menuList;
     private model.Panel panel1;
     private javax.swing.JScrollPane scrollMenu;
     // End of variables declaration//GEN-END:variables

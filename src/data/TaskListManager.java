@@ -32,13 +32,6 @@ public class TaskListManager {
         });
         queryTasks(getDefaultTaskQuery(), true);
     }
-    public void addTasks(TaskList taskList) {
-        if (this.taskList == null) {
-            this.taskList = new TaskList();
-            this.taskList = taskList;
-        }
-        this.taskList = taskList;
-    }
     public TaskList getTaskList() {
         return taskList;
     }
@@ -158,37 +151,14 @@ public class TaskListManager {
     
     public TaskList searchText(String text) {
         TaskList searchTask = new TaskList();
-        if (text.contains("*")) {
-            for (Task x : taskList.getTasks()) {
-                if (isMatch(text, x.getName()))
-                    searchTask.addTask(x);
-            }
-        }
-        else {
-            for (Task x : taskList.getTasks()) {
-                if (x.getName().contains(text)) {
-                    searchTask.addTask(x);
-                }
+        for (Task x : taskList.getTasks()) {
+            if (x.getName().contains(text)) {
+                searchTask.addTask(x);
             }
         }
         return searchTask;
     }
 
-    private static boolean isMatch(String pattern, String word) {
-        if (pattern.isEmpty()) {
-            return word.isEmpty();
-        }
-
-        if (pattern.charAt(0) == '*') {
-            return isMatch(pattern.substring(1), word) || (!word.isEmpty() && isMatch(pattern, word.substring(1)));
-        }
-
-        if (!word.isEmpty() && (pattern.charAt(0) == word.charAt(0) || pattern.charAt(0) == '.')) {
-            return isMatch(pattern.substring(1), word.substring(1));
-        }
-
-        return false;
-    }
 
     public TaskQuery getDefaultTaskQuery() {
         return defaultTaskQuery;

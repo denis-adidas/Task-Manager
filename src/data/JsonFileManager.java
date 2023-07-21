@@ -2,9 +2,7 @@ package data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParseException;
 import model.AppException;
-import model.IncorrectDataFormatException;
 import model.TaskList;
 
 import java.io.*;
@@ -57,23 +55,9 @@ public class JsonFileManager {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
             Gson gson = createGsonWithDataFormat();
             return gson.fromJson(bufferedReader, type);
-        } catch (FileNotFoundException | JsonParseException ex) {
+        } catch (FileNotFoundException ex) {
             ex.printStackTrace();
             return null;
         }
-
     }
-    public void importTasks(String filename) {
-        TaskList temp = fromJson(filename, TaskList.class);
-
-        assert temp != null;
-        temp.getTasks().forEach((task) -> {
-            task.setSelected(true);
-        });
-
-        TaskListManager.getInstance().addTasks(temp);
-        TaskListManager.getInstance().queryTasks(TaskListManager.getInstance().getDefaultTaskQuery(), true);
-    }
-
-
 }

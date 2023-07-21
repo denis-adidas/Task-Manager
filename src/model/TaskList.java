@@ -12,8 +12,8 @@ public class TaskList {
     private final ArrayList<Task> tasks = new ArrayList<>();
 
     public Task addTask(Task task) {
-            this.tasks.add(task);
-            return task;
+        this.tasks.add(task);
+        return task;
     }
     
     public void removeTask(Task task) {
