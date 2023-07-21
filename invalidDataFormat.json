@@ -1,0 +1,70 @@
+{
+  "tasks": [
+    {
+      "targetTime": {
+        "hour": 16,
+        "minute": 0,
+        "second": 0,
+        "nano": 0
+      },
+      "targetDate": {
+        "year": 2023,
+        "month": 7,
+        "day": 19
+      },
+      "targetDay": "WEDNESDAY",
+      "assignee": "",
+      "subTasks": [
+        {
+          "order": 0,
+          "id": 1,
+          "completed": false,
+          "selected": true
+
+          ],
+          "name": "Вытереть пыль",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        },
+        {
+          "targetTime": {
+            "hour": 16,
+            "minute": 52,
+            "second": 19,
+            "nano": 687581900
+          },
+          "targetDate": {
+            "year": 2023,
+            "month": 7,
+            "day": 19
+          },
+          "targetDay": "WEDNESDAY",
+          "subTasks": [],
+          "name": "Помыть полы",
+          "id": 1,
+          "completed": false,
+          "selected": true
+        },
+        {
+          "targetTime": {
+            "hour": 19,
+            "minute": 0,
+            "second": 0,
+            "nano": 0
+          },
+          "targetDate": {
+            "year": 2023,
+            "month": 7,
+            "day": 19
+          },
+          "targetDay": "WEDNESDAY",
+          "assignee": "Мама",
+          "subTasks": [],
+          "name": "\u003chtml\u003e\u003cs\u003eРазморозить курочку для мамы\u003c/s\u003e\u003c/html\u003e",
+          "id": 1,
+          "completed": true,
+          "selected": true
+        }
+      ]
+    }
