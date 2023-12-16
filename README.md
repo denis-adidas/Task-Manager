@@ -7,7 +7,7 @@
 ## Task Manager on Swing:
 1. There is a calendar (1 day, 7 days, 30 days). Today's day is highlighted in color and all tasks are displayed on the calendar.
 2. There is a task manager where you can add notes, sort them, add them to tasks, highlight them in lists, and highlight them for a specific time and date.
-3. Love for details🥰
+3. Love for details
 
 ## 🐄Структура проекта\Project structure:
 1. Swing Java
